@@ -1,5 +1,17 @@
 FROM node:18-alpine
 
 
-WORKDIR /usr/src/app
+WORKDIR /app
+
+COPY package.json .
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 3000
+
+VOLUME [ "/app/node_modules" ]
+
+CMD ["node", "ace", "serve", "--watch"]
 
