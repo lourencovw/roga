@@ -10,7 +10,7 @@ export default class extends BaseSchema {
       table.string('father_name')
       table.string('mother_name')
       table.string('cep',8)
-      table.datetime('birthdate')
+      table.date('birthdate')
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
