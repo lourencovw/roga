@@ -9,7 +9,7 @@ export default class extends BaseSchema {
       table.integer('person_id')
         .unsigned()
         .references('id')
-        .inTable('users').onDelete('CASCADE')
+        .inTable('people').onDelete('CASCADE')
       table.string('title').notNullable()
       table.string('description', 2000)
       table.timestamp('created_at', { useTz: true })

@@ -20,8 +20,10 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.resource('people', 'UsersController').middleware('auth')
-Route.resource('notes', 'NotesController').middleware('auth')
+Route.group(() => {
+  Route.resource('people', 'PeopleController')
+  Route.resource('notes', 'NotesController')
+}).middleware('auth')
 
 Route.post('login', 'UsersController.login')
 Route.post('register', 'UsersController.register')
