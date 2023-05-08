@@ -32,3 +32,10 @@ export default class UsersController {
   }
 
 }
+cd build && npm ci --production &&  node server.js
+
+MYSQL_USER=txwg579bl4fokz96
+MYSQL_PASSWORD=jsx0p07zt5y0q8j3
+MYSQL_HOST=r4wkv4apxn9btls2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
+MYSQL_PORT=3306
+MYSQL_DB_NAME=rf93wrhxh4x0t83f
