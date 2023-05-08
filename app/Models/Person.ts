@@ -18,6 +18,9 @@ export default class Person extends BaseModel {
   @column()
   public cep: string
 
+  @column()
+  public address: JSON
+
   @hasMany(() => Note)
   public notes: HasMany<typeof Note>
 
