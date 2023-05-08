@@ -10,7 +10,7 @@ export default class Person extends BaseModel {
   public name: string
 
   @column()
-  public father_name: string
+  public father_name: string | undefined
 
   @column()
   public mother_name: string
@@ -19,13 +19,13 @@ export default class Person extends BaseModel {
   public cep: string
 
   @column()
-  public address: JSON
+  public address: any
 
   @hasMany(() => Note)
   public notes: HasMany<typeof Note>
 
   @column.date()
-  public birthdate: Date
+  public birthdate: any
 
 
   @column.dateTime({ autoCreate: true })

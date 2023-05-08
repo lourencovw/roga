@@ -10,7 +10,7 @@ export default class Note extends BaseModel {
   public title: string
 
   @column()
-  public description: string
+  public description: string | undefined
 
   @column()
   public personId: number
