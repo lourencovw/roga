@@ -23,11 +23,9 @@ export default class UsersController {
 
   public async register({ request }: HttpContextContract) {
     const user = new User()
-    const email = request.input('email')
-    const password = request.input('password')
 
-    user.username = 'virk'
-    user.email = 'virk@adonisjs.com'
+    user.password = request.input('password')
+    user.email = request.input('email')
 
     // Insert to the database
     return await user.save()
