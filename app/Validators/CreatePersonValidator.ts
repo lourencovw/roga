@@ -5,10 +5,10 @@ export default class CreatePersonValidator {
   constructor(protected ctx: HttpContextContract) { }
 
   public schema = schema.create({
-    name: schema.string(),
-    mother_name: schema.string(),
-    father_name: schema.string.optional(),
-    cep: schema.string([rules.maxLength(8)]),
+    name: schema.string([rules.maxLength(255)]),
+    mother_name: schema.string([rules.maxLength(255)]),
+    father_name: schema.string.optional([rules.maxLength(255)]),
+    cep: schema.string([rules.regex(/^\d{8}$/gm)]),
     birthdate: schema.date({ format: 'yyyy-MM-dd' })
   })
 
