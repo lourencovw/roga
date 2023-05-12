@@ -28,3 +28,7 @@ Route.group(() => {
 Route.post('login', 'UsersController.login')
 Route.post('register', 'UsersController.register')
 
+Route.get('/', async ({ view }) => {
+	const specUrl = 'docs/swagger.json'
+	return view.render('swagger', { specUrl })
+})
