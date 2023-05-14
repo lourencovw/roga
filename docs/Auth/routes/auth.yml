@@ -1,0 +1,38 @@
+/login:
+  post:
+    tags:
+      - Auth
+    summary: Sign in a user
+    description: Sign in a user
+    operationId: signInUser
+    requestBody:
+      description: Create a new user
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Auth'
+      required: true
+    produces:
+      - application/json
+    responses:
+      200:
+        description: Success
+/register:
+  post:
+    tags:
+      - Auth
+    summary: Register a new user
+    description: Register a new user
+    operationId: registerUser
+    requestBody:
+      description: Create a new user
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Auth'
+      required: true
+    produces:
+      - application/json
+    responses:
+      200:
+        description: Success

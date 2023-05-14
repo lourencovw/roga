@@ -1,0 +1,14 @@
+/notes:
+  get:
+    tags:
+      - Notes
+    security:
+        - bearerAuth: []
+    summary: List notes
+    description: Returns all notes
+    operationId: getNotes
+    produces:
+      - application/json
+    responses:
+      200:
+        description: Success

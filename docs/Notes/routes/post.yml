@@ -1,0 +1,21 @@
+/notes:
+  post:
+    tags:
+      - Notes
+    security:
+        - bearerAuth: []
+    summary: Create a new note
+    description: Create a new note
+    operationId: createNote
+    requestBody:
+      description: Create a new note
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Note'
+      required: true
+    produces:
+      - application/json
+    responses:
+      200:
+        description: Success

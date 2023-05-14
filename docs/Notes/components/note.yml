@@ -1,0 +1,15 @@
+components:
+  schemas:
+    Note:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Note Title
+        description:
+          type: string
+          example: Note description.
+        person:
+          type: integer
+          format: int64
+          example: 10

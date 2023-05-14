@@ -1,0 +1,20 @@
+components:
+  schemas:
+    Person:
+      type: object
+      properties:
+        name:
+          type: string
+          example: John
+        mother_name:
+          type: string
+          example: Mary
+        father_name:
+          type: string
+          example: Bob
+        cep:
+          type: string
+          example: "01001000"
+        birthdate:
+          type: string
+          example: "2008-05-02"

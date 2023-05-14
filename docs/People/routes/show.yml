@@ -1,0 +1,22 @@
+/people/{personId}:
+  get:
+    tags:
+      - People
+    security:
+        - bearerAuth: []
+    summary: Find person by ID
+    description: Returns a single person
+    operationId: getPersonById
+    parameters:
+      - name: personId
+        in: path
+        description: ID of person to return
+        required: true
+        schema:
+          type: integer
+          format: int64
+    produces:
+      - application/json
+    responses:
+      200:
+        description: Success

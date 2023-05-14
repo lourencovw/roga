@@ -1,0 +1,21 @@
+/people:
+  post:
+    tags:
+      - People
+    security:
+        - bearerAuth: []
+    summary: Create a new person
+    description: Create a new person
+    operationId: createPerson
+    requestBody:
+      description: Create a new person
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Person'
+      required: true
+    produces:
+      - application/json
+    responses:
+      200:
+        description: Success

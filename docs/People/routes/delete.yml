@@ -1,0 +1,22 @@
+/people/{personId}:
+  delete:
+    tags:
+      - People
+    security:
+        - bearerAuth: []
+    summary: Update person
+    description: This can only be done by the logged in user.
+    operationId: deletePerson
+    parameters:
+      - name: personId
+        in: path
+        description: ID of person to be deleted
+        required: true
+        schema:
+          type: integer
+          format: int64
+    produces:
+      - application/json
+    responses:
+      200:
+        description: Success

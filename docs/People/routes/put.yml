@@ -1,0 +1,28 @@
+/people/{personId}:
+  put:
+    tags:
+      - People
+    security:
+        - bearerAuth: []
+    summary: Update person
+    description: This can only be done by the logged in user.
+    operationId: updatePerson
+    requestBody:
+        description: Update an existent user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Person'
+    parameters:
+      - name: personId
+        in: path
+        description: ID of person to return
+        required: true
+        schema:
+          type: integer
+          format: int64
+    produces:
+      - application/json
+    responses:
+      200:
+        description: Success

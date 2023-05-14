@@ -1,0 +1,14 @@
+/people:
+  get:
+    tags:
+      - People
+    security:
+        - bearerAuth: []
+    summary: List people
+    description: Returns all people
+    operationId: getPeople
+    produces:
+      - application/json
+    responses:
+      200:
+        description: Success
