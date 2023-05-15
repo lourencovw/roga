@@ -1,11 +1,19 @@
 import { test } from '@japa/runner'
 import PersonFactory from 'Database/factories/PersonFactory'
 import UserFactory from 'Database/factories/UserFactory'
+import Database from '@ioc:Adonis/Lucid/Database'
+
 
 test.group('People index', (group) => {
   let user;
   group.setup( async () => {
+
+    await Database.beginGlobalTransaction()
     user = await UserFactory.create()
+    return () => Database.rollbackGlobalTransaction()
+  })
+
+  group.each.setup(async () => {
   })
 
   test("It should retrieve 0 people", async ({ client, assert }) => {

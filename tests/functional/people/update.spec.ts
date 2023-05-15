@@ -1,6 +1,8 @@
 import { test } from '@japa/runner'
 import PersonFactory from 'Database/factories/PersonFactory';
 import UserFactory from 'Database/factories/UserFactory';
+import Database from '@ioc:Adonis/Lucid/Database'
+
 
 test.group('People update', (group) => {
   let user,person;

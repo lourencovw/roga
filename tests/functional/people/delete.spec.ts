@@ -1,16 +1,22 @@
 import { test } from '@japa/runner'
 import PersonFactory from 'Database/factories/PersonFactory'
 import UserFactory from 'Database/factories/UserFactory';
+import Database from '@ioc:Adonis/Lucid/Database'
+
 
 test.group('People delete', (group) => {
   let user;
   group.setup( async () => {
+    await Database.beginGlobalTransaction()
+
     user = await UserFactory.create()
+    return () => Database.rollbackGlobalTransaction()
+
   })
 
   test("It should delete", async ({ client }) => {
-    await PersonFactory.create()
-    const response = await client.delete('/people/1').loginAs(user)
+    const person =  await PersonFactory.create()
+    const response = await client.delete(`/people/${person['id']}`).loginAs(user)
 
     response.assertStatus(200)
   })
