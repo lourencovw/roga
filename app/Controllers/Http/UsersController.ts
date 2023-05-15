@@ -1,10 +1,14 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
+import CreateUser from 'App/Validators/CreateUserValidator';
+import SignInUser from 'App/Validators/SignInUserValidator';
 
 export default class UsersController {
   public async login({ auth, request, response }: HttpContextContract) {
-    const email = request.input('email')
-    const password = request.input('password')
+    const payload = await request.validate(SignInUser);
+
+    const email = payload.email
+    const password = payload.password
 
     try {
       const token = await auth.use('api').attempt(email, password)
@@ -22,10 +26,12 @@ export default class UsersController {
   }
 
   public async register({ request }: HttpContextContract) {
+    const payload = await request.validate(CreateUser)
+
     const user = new User()
 
-    user.password = request.input('password')
-    user.email = request.input('email')
+    user.password = payload.password
+    user.email = payload.email
 
     // Insert to the database
     return await user.save()
