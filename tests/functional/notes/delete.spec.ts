@@ -26,7 +26,6 @@ test.group('Notes delete', (group) => {
   test("It shouldn't delete the note", async ({ client }) => {
     const response = await client.delete('/notes/123445').loginAs(user)
 
-
     response.assertStatus(404)
   })
 

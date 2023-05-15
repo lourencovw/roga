@@ -7,7 +7,9 @@ import Database from '@ioc:Adonis/Lucid/Database'
 test.group('People show', (group) => {
   let user;
   group.setup( async () => {
+    await Database.beginGlobalTransaction()
     user = await UserFactory.create()
+    return () => Database.rollbackGlobalTransaction()
   })
 
   test("It should show a person", async ({ client }) => {

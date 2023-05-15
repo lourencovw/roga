@@ -1,20 +1,24 @@
 import { test } from '@japa/runner'
 import Database from '@ioc:Adonis/Lucid/Database'
+import UserFactory from 'Database/factories/UserFactory';
+import PersonFactory from 'Database/factories/PersonFactory';
 
 
 test.group('Notes update', (group) => {
   let user,person;
   group.setup( async () => {
+    await Database.beginGlobalTransaction()
     user = await UserFactory.create()
     person = await PersonFactory.create()
+    return () => Database.rollbackGlobalTransaction()
   })
 
   test('It should update', async ({ client, assert }) => {
     const response = await client.put(`/people/${person['id']}`).json({
-      "name": "Update",
-      "mother_name": "Update",
-      "father_name": "Update",
-      "birthdate": "2021-05-02"
+      name: "Update",
+      mother_name: "Update",
+      father_name: "Update",
+      birthdate: "2021-05-02"
     }).loginAs(user)
 
     const {name, mother_name, father_name} = response.body()

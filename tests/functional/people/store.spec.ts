@@ -6,21 +6,19 @@ import Database from '@ioc:Adonis/Lucid/Database'
 test.group('People store', (group) => {
   let user;
   group.setup( async () => {
-    user = await UserFactory.create()
-  })
 
-  group.each.setup(async () => {
     await Database.beginGlobalTransaction()
+    user = await UserFactory.create()
     return () => Database.rollbackGlobalTransaction()
   })
 
   test('It should store', async ({ client, assert }) => {
     const response = await client.post('/people').json({
-      "name": "test",
-      "mother_name": "Maria",
-      "father_name": "Jose",
-      "cep": "29102576",
-      "birthdate": "2021-05-02"
+      name: "test",
+      mother_name: "Maria",
+      father_name: "Jose",
+      cep: "29102576",
+      birthdate: "2021-05-02"
     }).loginAs(user)
 
     response.assertStatus(200)
@@ -31,10 +29,10 @@ test.group('People store', (group) => {
   })
   test('It should store without father_name', async ({ client, assert }) => {
     const response = await client.post('/people').json({
-      "name": "test",
-      "mother_name": "Maria",
-      "cep": "29102576",
-      "birthdate": "2021-05-02"
+      name: "test",
+      mother_name: "Maria",
+      cep: "29102576",
+      birthdate: "2021-05-02"
     }).loginAs(user)
 
     response.assertStatus(200)
@@ -65,10 +63,10 @@ test.group('People store', (group) => {
   })
   test("It shouldn't store without name", async ({ client, assert }) => {
     const response = await client.post('/people').json({
-      "mother_name": "Maria",
-      "father_name": "Jose",
-      "cep": "29102576",
-      "birthdate": "2021-05-02"
+      mother_name: "Maria",
+      father_name: "Jose",
+      cep: "29102576",
+      birthdate: "2021-05-02"
     }).loginAs(user)
 
     response.assertStatus(422)
