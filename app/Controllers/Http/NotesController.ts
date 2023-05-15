@@ -1,9 +1,12 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Note from 'App/Models/Note';
 import CreateNote from 'App/Validators/CreateNoteValidator';
+import UpdateNote from 'App/Validators/UpdateNoteValidator';
 
 export default class NotesController {
-  public async index({ }: HttpContextContract) { }
+  public async index({ }: HttpContextContract) {
+    return await Note.all()
+  }
 
   public async store({ request }: HttpContextContract) {
     const payload = await request.validate(CreateNote);
@@ -17,9 +20,23 @@ export default class NotesController {
     return await note.save()
   }
 
-  public async show({ }: HttpContextContract) { }
+  public async show({ request }: HttpContextContract) {
+    return await Note.findOrFail(request.param('id'))
+  }
 
-  public async update({ }: HttpContextContract) { }
+  public async update({ request }: HttpContextContract) {
+    const payload = await request.validate(UpdateNote);
+    const note = await Note.findOrFail(request.param('id'))
 
-  public async destroy({ }: HttpContextContract) { }
+    return await note
+      .merge(payload)
+      .save()
+  }
+
+  public async destroy({ request }: HttpContextContract) {
+    const person = await Note.findOrFail(request.param('id'))
+    await person.delete()
+
+    return true
+  }
 }
