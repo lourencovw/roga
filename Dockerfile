@@ -13,5 +13,7 @@ EXPOSE 3000
 
 VOLUME [ "/app/node_modules" ]
 
+RUN node ace swagger:generate
+
 CMD ["node", "ace", "serve", "--watch"]
 
