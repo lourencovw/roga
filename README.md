@@ -6,6 +6,9 @@
 ## 3- run migrations
 `docker exec [container id] node ace migration:run`
 
+## 4- Create doc files
+`docker exec [container id] node ace swagger:generate`
+
 # Best Practices App
 
 ## 1 - Following 12 factor app
