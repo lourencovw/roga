@@ -8,7 +8,7 @@ export default class UsersController {
     const payload = await request.validate(SignInUser);
 
     const email = payload.email
-    const password = payload.password
+    const password = payload?.password || ''
 
     try {
       const token = await auth.use('api').attempt(email, password)
@@ -30,7 +30,7 @@ export default class UsersController {
 
     const user = new User()
 
-    user.password = payload.password
+    user.password = payload?.password || ''
     user.email = payload.email
 
     // Insert to the database
