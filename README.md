@@ -1,3 +1,11 @@
+# Instructions
+
+## 1- Set env variables
+## 2- Compile and run applications using Docker
+`docker-compose up --build`
+## 3- run migrations
+`docker exec [container id] node ace migration:run`
+
 # Best Practices App
 
 ## 1 - Following 12 factor app
